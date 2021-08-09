@@ -12,6 +12,10 @@ const logger = require("morgan");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 
+// require('dotenv').config({path: path});
+
+// let name = process.env.Name;
+
 const { json, urlencoded } = express;
 
 connectDB();
