@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
+import  PrivateRoute from './components/routing/PrivateRoute';
 
 import './App.css';
 
@@ -18,7 +19,7 @@ function App(): JSX.Element {
           <AuthProvider>
             <SocketProvider>
               <Switch>
-                <Route exact path="/login" component={Login} />
+                <PrivateRoute exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/dashboard">
                   <Dashboard />
