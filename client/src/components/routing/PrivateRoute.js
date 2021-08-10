@@ -1,15 +1,23 @@
-import { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import AuthContext from '../../context/useAuthContext';
+import { AuthContext } from '../../context/useAuthContext';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute: React.FunctionComponent<Props> = ({ component: Component, ...rest }) => {
   const authContext = useContext(AuthContext);
-  const { isAuthenticated } = authContext;
+  const { loggedInUser } = authContext;
   return (
-    <Route
-      {...rest}
-      render={(props) => (!isAuthenticated ? <Redirect to="/login" /> : <Component {...props} />)}
-    />
+    <Fragment>
+      <Route
+        {...rest}
+        render={(props) => {
+          if (!loggedInUser) {
+            return <Redirect to="/login" />;
+          } else {
+            return <Component {...props} />;
+          }
+        }}
+      />
+    </Fragment>
   );
 };
 
