@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../../context/useAuthContext';
 
-const PrivateRoute: React.FunctionComponent<Props> = ({ component: Component, ...rest }) => {
+const PrivateRoute: React.FunctionComponent<any> = ({ component: Component, ...rest }) => {
   const authContext = useContext(AuthContext);
   const { loggedInUser } = authContext;
   return (
