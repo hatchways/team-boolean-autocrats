@@ -55,9 +55,11 @@ const profileSchema = new mongoose.Schema({
   availability: {
     start: {
       type: Date,
+      required: false,
     },
     end: {
       type: Date,
+      required: false,
     },
   },
   hourlyRate: {
