@@ -2,19 +2,22 @@ const colors = require("colors");
 const path = require("path");
 const http = require("http");
 const express = require("express");
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 const socketio = require("socket.io");
 const { notFound, errorHandler } = require("./middleware/error");
 const connectDB = require("./db");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const { uploadToS3, downloadFromS3 } = require('./S3');
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 
 const { json, urlencoded } = express;
 
-connectDB();
+// connectDB();
 const app = express();
 const server = http.createServer(app);
 
@@ -55,6 +58,15 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running");
   });
 }
+
+// POST request to upload image
+app.post('/images', upload.single('image'), async (req, res) => {
+  const file = req.file;
+  // console.log('req.file', file);
+  const result = await uploadToS3(file);
+  // console.log('result', result)
+  res.send(result.Location)
+})
 
 app.use(notFound);
 app.use(errorHandler);
