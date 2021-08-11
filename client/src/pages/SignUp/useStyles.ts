@@ -21,6 +21,13 @@ const useStyles = makeStyles(() => ({
     color: '#000000',
     fontWeight: 700,
     fontFamily: "'Open Sans'",
+    textAlign: 'center',
+  },
+  border: {
+    border: '1px solid black',
+  },
+  paper: {
+    width: '100%',
   },
 }));
 
