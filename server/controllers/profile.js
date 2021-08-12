@@ -7,10 +7,6 @@ exports.createNewProfile = asyncHandler(async (req, res) => {
   const profile = req.body;
   const newProfile = new Profile({ ...profile });
 
-  if (!newProfile) {
-    res.status(500);
-    throw new Error('Error creating the profile.');
-  }
   await newProfile.save();
   res.status(201).json({ status: 201, profile: newProfile, message: 'Profile created!' });
 });
@@ -24,7 +20,7 @@ exports.updateProfile = asyncHandler(async (req, res) => {
     const updatedProfile = await Profile.findByIdAndUpdate(id, profile, {
       new: true,
     });
-    res.status(201).json({ status: 201, profile: updatedProfile, message: 'Profile updated!' });
+    res.status(200).json({ status: 200, profile: updatedProfile, message: 'Profile updated!' });
   } catch (error) {
     res.status(500);
     throw new Error('Error updating the profile.');
@@ -32,8 +28,8 @@ exports.updateProfile = asyncHandler(async (req, res) => {
 });
 
 // GET /profile:id - Search profile with the given id
-exports.searchProfiles = asyncHandler(async (req, res) => {
-  const profile = await Profile.findById(req.profile.id);
+exports.searchProfile = asyncHandler(async (req, res) => {
+  const profile = await Profile.findById(req.params.id);
   if (!profile) {
     res.status(404);
     throw new Error('Error searching for a profile with that id.');
