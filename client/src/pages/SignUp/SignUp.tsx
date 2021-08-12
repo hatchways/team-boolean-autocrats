@@ -43,7 +43,7 @@ export default function Register(): JSX.Element {
       <Grid className={classes.paper} component={Paper} square>
         <Box className={classes.authWrapper}>
           <AuthHeader linkTo="/login" asideText="Already have an account?" btnText="Login" />
-          <Box className={classes.border} width="100%" maxWidth={450} p={3} alignSelf="center">
+          <Box component={Paper} width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>
               <Grid item xs>
                 <Typography className={classes.welcome} component="h1" variant="h5">

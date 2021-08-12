@@ -56,7 +56,7 @@ const SignUpForm = ({ handleSubmit }: Props): JSX.Element => {
           <Typography className={classes.label}>Email address</Typography>
           <TextField
             id="email"
-            placeholder="email"
+            placeholder="Your Email"
             fullWidth
             margin="normal"
             InputLabelProps={{
