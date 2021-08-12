@@ -50,20 +50,3 @@ exports.fetchAllProfiles = asyncHandler(async (req, res) => {
   }
   res.status(200).json({ status: 200, profile: profiles, message: 'Profiles found!' });
 });
-
-// DELETE /profile/:id - Delete a profile with the given id
-// exports.deleteProfile = asyncHandler(async (req, res) => {
-//   const id = req.params.id;
-//   const profile = Profile.findById(id);
-//   if (!profile) {
-//     res.status(404);
-//     throw new Error('Error finding the profile.');
-//   }
-//   try {
-//     Profile.findByIdAndDelete(id);
-//     res.status(200);
-//   } catch (error) {
-//     res.status(500);
-//     throw new Error('Error deleting profile.');
-//   }
-// });
