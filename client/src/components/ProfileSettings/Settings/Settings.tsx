@@ -1,5 +1,5 @@
-import { Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 export default function Settings(): JSX.Element {
-  return <Grid>Settings</Grid>;
+  return <Typography>Settings</Typography>;
 }

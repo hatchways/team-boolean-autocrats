@@ -26,11 +26,14 @@ export default function Dashboard(): JSX.Element {
     // loading for a split seconds until history.push works
     return <CircularProgress />;
   }
-
+  const handleTemporaryButton = () => {
+    history.push('/profile/menuitems');
+  };
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
       <Grid item className={classes.drawerWrapper}>
+        {<button onClick={handleTemporaryButton}>Options</button>}
         <ChatSideBanner loggedInUser={loggedInUser} />
       </Grid>
     </Grid>

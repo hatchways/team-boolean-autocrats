@@ -2,33 +2,40 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: '#FAFAFB',
-    position: 'absolute',
+    backgroundColor: '#FAFAFA',
+    position: 'relative',
     top: 0,
     left: 0,
-    width: '100%',
     height: '100%',
-    marginTop: '50px',
+    marginTop: '55px',
   },
-  menuItem: {
+  optionItem: {
     fontSize: '1.1rem',
-    margin: '10px 40px',
-    color: '#8D8D8D',
+    margin: '12px 150px',
+    color: '#9d9d9d',
+    fontWeight: 600,
     hover: 'none',
-    fontWeight: 800,
+    cursor: 'pointer',
+    width: 'fit-content',
   },
-  selectedMenuItem: {
-    color: '#000000',
+  selectedOptionItem: {
+    color: '#131313',
   },
-  menuItems: {
+  optionItems: {
+    marginTop: '18px',
     display: 'flex',
     flexDirection: 'column',
-    cursor: 'pointer',
+    width: '30%',
   },
   menuContainer: {
-    boxShadow: '0px 0px 8px #CACACA',
+    position: 'relative',
+    boxShadow: '0px 0px 15px #CACACA',
     borderRadius: '5px',
-    height: '80vh',
+    height: '85vh',
+    margin: 0,
+    padding: 0,
+    display: 'flex',
+    justifyContent: 'center',
   },
 }));
 

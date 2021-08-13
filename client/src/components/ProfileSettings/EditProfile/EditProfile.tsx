@@ -1,5 +1,5 @@
-import { Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 export default function EditProfile(): JSX.Element {
-  return <Grid>Edit Profile</Grid>;
+  return <Typography>Edit Profile</Typography>;
 }

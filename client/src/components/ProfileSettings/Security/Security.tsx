@@ -1,5 +1,5 @@
-import { Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 export default function Security(): JSX.Element {
-  return <Grid>Security</Grid>;
+  return <Typography>Security</Typography>;
 }
