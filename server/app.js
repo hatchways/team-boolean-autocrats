@@ -17,7 +17,7 @@ const userRouter = require("./routes/user");
 
 const { json, urlencoded } = express;
 
-// connectDB();
+connectDB();
 const app = express();
 const server = http.createServer(app);
 
@@ -62,9 +62,7 @@ if (process.env.NODE_ENV === "production") {
 // POST request to upload image
 app.post('/images', upload.single('image'), async (req, res) => {
   const file = req.file;
-  // console.log('req.file', file);
   const result = await uploadToS3(file);
-  // console.log('result', result)
   res.send(result.Location)
 })
 
