@@ -4,6 +4,7 @@ export interface AuthApiDataSuccess {
   message: string;
   user: User;
   token: string;
+  profile: any;
 }
 
 export interface AuthApiData {

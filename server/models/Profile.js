@@ -19,18 +19,15 @@ const profileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dateOfBirth: {
-    type: Date,
-    required: true,
-  },
+  dateOfBirth: Date,
   email: {
     type: String,
     required: true,
     trim: true,
   },
   phoneNumber: {
-    type: Number,
-    required: true,
+    type: String,
+    required: false,
     trim: true,
   },
   address: {
@@ -55,6 +52,13 @@ const profileSchema = new mongoose.Schema({
   availableHoursPerWeek: {
     type: String,
     required: false,
+    enum: [
+      'More than 10 hrs/week',
+      'More than 20 hrs/week',
+      'More than 30 hrs/week',
+      'More than 40 hrs/week',
+      'More than 50 hrs/week',
+    ],
   },
   availabilityPerWeek: {
     monday: { type: Boolean, default: false },
