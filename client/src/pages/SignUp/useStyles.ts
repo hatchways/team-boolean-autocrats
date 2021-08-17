@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
     '& .MuiInput-underline:before': {
@@ -24,6 +24,10 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
   },
   paper: {
+    margin: 'auto',
+    marginTop: theme.spacing(8),
+    maxWidth: '450px',
+    padding: theme.spacing(3),
     width: '100%',
   },
 }));
