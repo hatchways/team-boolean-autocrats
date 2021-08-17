@@ -1,14 +1,14 @@
 export interface Profile {
-  userId: string;
+  userId?: string;
   firstName: string;
   lastName: string;
   gender: string;
   dateOfBirth: Date;
   email: string;
-  phoneNumber: string;
+  phoneNumber?: string;
   address: string;
   description: string;
-  type: string;
+  type?: string;
   isAvailable?: boolean;
   availableHoursPerWeek?: string;
   availabilityPerWeek?: {
@@ -21,4 +21,30 @@ export interface Profile {
     sunday: boolean;
   };
   hourlyRate?: number;
+}
+
+export interface CurrentUserProfile {
+  profile: {
+    type?: string;
+    firstName: string;
+    lastName: string;
+    gender: string;
+    dateOfBirth: Date;
+    email: string;
+    phoneNumber?: string;
+    address: string;
+    description: string;
+    isAvailable: boolean;
+    availableHoursPerWeek: string;
+    hourlyRate: number;
+    availabilityPerWeek: {
+      monday: boolean;
+      tuesday: boolean;
+      wednesday: boolean;
+      thursday: boolean;
+      friday: boolean;
+      saturday: boolean;
+      sunday: boolean;
+    };
+  };
 }
