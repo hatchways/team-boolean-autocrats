@@ -7,8 +7,8 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
-
 import './App.css';
+import ProfileSettings from './pages/ProfileSettings/ProfileSettings';
 
 function App(): JSX.Element {
   return (
@@ -20,6 +20,7 @@ function App(): JSX.Element {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
+                <Route path="/profile/options" component={ProfileSettings} />
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>
