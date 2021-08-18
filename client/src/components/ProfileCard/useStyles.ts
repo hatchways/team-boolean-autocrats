@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: 'lightgrey',
     borderRadius: '50%',
@@ -8,19 +8,36 @@ const useStyles = makeStyles({
     margin: '25px',
     width: 100,
   },
-  root: {
+  box: {
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    margin: '0 auto',
-    marginTop: '50px',
-    maxHeight: 450,
-    maxWidth: 450,
+  },
+  deleteBtn: {
+    color: '#bbbcbb',
+  },
+  paper: {
+    margin: 'auto',
+    marginTop: theme.spacing(8),
+    maxWidth: '450px',
+    padding: theme.spacing(3),
+    width: '100%',
+  },
+  secondaryText: {
+    fontSize: '12px',
+    textAlign: 'center',
+    width: theme.spacing(20),
   },
   title: {
-    margin: '50px',
+    margin: theme.spacing(3),
   },
-});
+  uploadBtn: {
+    color: '#ef3f40',
+    fontSize: '11px',
+    height: theme.spacing(6),
+    margin: theme.spacing(4),
+    width: theme.spacing(25),
+  },
+}));
 
 export default useStyles;
