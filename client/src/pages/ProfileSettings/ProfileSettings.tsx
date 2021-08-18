@@ -17,7 +17,6 @@ export default function ProfileSettings(): JSX.Element {
   const location = useLocation();
 
   const handleRoute = (path: string) => {
-    console.log(path);
     switch (path) {
       case '/profile/options/edit-profile':
         return <EditProfile />;
