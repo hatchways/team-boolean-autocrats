@@ -2,8 +2,16 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from '../context/useAuthContext';
 
-export default function ProtectedRoute({ component: Component, ...rest }): JSX.Element {
+interface ProtectedRouteProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component: any;
+  exact: boolean;
+  path: string;
+}
+
+export default function ProtectedRoute(props: ProtectedRouteProps): JSX.Element {
   const { loggedInUser } = useAuth();
+  const { component: Component, ...rest } = props;
   return (
     <Route
       {...rest}
