@@ -1,51 +1,58 @@
-import { Container, Grid, Link } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { useState } from 'react';
+import Paper from '@material-ui/core/Paper';
+import { useLocation } from 'react-router-dom';
 import Availability from './../../components/ProfileSettings/Availability/Availability';
 import EditProfile from './../../components/ProfileSettings/EditProfile/EditProfile';
+import Options from './../../components/ProfileSettings/Options/Options';
 import Payment from './../../components/ProfileSettings/Payment/Payment';
 import ProfilePhoto from './../../components/ProfileSettings/ProfilePhoto/ProfilePhoto';
 import Security from './../../components/ProfileSettings/Security/Security';
 import Settings from './../../components/ProfileSettings/Settings/Settings';
 import useStyles from './useStyles';
 
-export default function ProfileSettings(props: any): JSX.Element {
-  const Options = ['Edit Profile', 'Profile Photo', 'Availability', 'Payment', 'Security', 'Settings'];
-
+export default function ProfileSettings(): JSX.Element {
   const classes = useStyles();
 
-  const [currentSection, setCurrentSection] = useState(props.match.params.options);
+  const location = useLocation();
 
-  const handleClick = (section: string) => {
-    setCurrentSection(section);
-    props.history.push(`/profile/${section}`);
+  const handleRoute = (path: string) => {
+    console.log(path);
+    switch (path) {
+      case '/profile/options/edit-profile':
+        return <EditProfile />;
+
+      case '/profile/options/profile-photo':
+        return <ProfilePhoto />;
+
+      case '/profile/options/availability':
+        return <Availability />;
+
+      case '/profile/options/payment':
+        return <Payment />;
+
+      case '/profile/options/security':
+        return <Security />;
+
+      case '/profile/options/settings':
+        return <Settings />;
+
+      default:
+        return <EditProfile />;
+    }
   };
 
   return (
-    <Grid container className={`${classes.root}`}>
+    <Grid container>
       <CssBaseline />
-      <Grid className={`${classes.optionItems}`}>
-        {Options.map((item) => (
-          <Link
-            onClick={() => handleClick(item.replace(/\s/g, '').toLowerCase())}
-            className={`${classes.optionItem} ${
-              currentSection === item.replace(/\s/g, '').toLowerCase() && classes.selectedOptionItem
-            }`}
-            underline="none"
-            key={item}
-          >
-            {item}
-          </Link>
-        ))}
+      <Grid item xs={2}>
+        <Options />
       </Grid>
-      <Container maxWidth="sm" className={classes.menuContainer}>
-        {currentSection === 'editprofile' && <EditProfile />}
-        {currentSection === 'profilephoto' && <ProfilePhoto />}
-        {currentSection === 'availability' && <Availability />}
-        {currentSection === 'payment' && <Payment />}
-        {currentSection === 'security' && <Security />}
-        {currentSection === 'settings' && <Settings />}
-      </Container>
+      <Grid item xs={10} className={classes.root}>
+        <Paper elevation={3} className={classes.gridContainer}>
+          {handleRoute(location.pathname)}
+        </Paper>
+      </Grid>
     </Grid>
   );
 }
