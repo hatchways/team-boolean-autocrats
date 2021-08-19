@@ -1,7 +1,7 @@
 import Box from '@material-ui/core/Box';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { StylesProvider } from '@material-ui/core/styles';
 import { FormikHelpers } from 'formik';
 import { Profile } from './../../../interface/Profile';
 import EditProfileForm from './EditProfileForm/EditProfileForm';
@@ -22,7 +22,6 @@ export default function EditProfile(): JSX.Element {
       address,
       description,
       hourlyRate,
-      availabilityPerWeek,
     }: Profile,
     { setSubmitting }: FormikHelpers<Profile>,
   ) => {
@@ -30,17 +29,13 @@ export default function EditProfile(): JSX.Element {
     // Make an API Call to update profile
   };
   return (
-    <Grid component="main">
+    <Grid container>
       <CssBaseline />
-      <Grid item component={Paper} className={classes.editProfileBackground}>
-        <Box className={classes.box}>
+      <Box className={classes.box}>
+        <StylesProvider injectFirst>
           <EditProfileForm handleSubmit={handleSubmit} />
-        </Box>
-      </Grid>
+        </StylesProvider>
+      </Box>
     </Grid>
   );
 }
-
-// TODO
-// This is a temporary component that renders itself to show that routes are working
-// Update this component to replicate the necessary UI for the availability of users

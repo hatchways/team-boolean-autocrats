@@ -46,7 +46,8 @@ const profileSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ['Sitter', 'Owner', 'Sitter/Owner'],
+    enum: ['Sitter', 'Owner'],
+    default: 'Owner',
   },
   isAvailable: {
     type: Boolean,
