@@ -1,81 +1,45 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: any) => ({
-  gridItem: {
+  form: {
+    width: '100%',
+    height: '100%',
+  },
+  gridItemA: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
+  },
+  gridItemB: {
     display: 'flex',
     flexDirection: 'row',
-    margin: '20px 0px',
     alignItems: 'center',
+    justifyContent: 'center',
+    margin: '5% 0 2% 0',
+    fontWeight: 'bold',
   },
   heading: {
     margin: '0 auto',
-    marginTop: '2.5rem',
-    marginBottom: '2.5rem',
+    marginBottom: '2rem',
     textAlign: 'center',
-  },
-  form: {
-    marginTop: '10%',
-    width: '80%', // Fix IE 11 issue.
-    // margin: 'auto',
-    marginLeft: '1rem',
-  },
-  textField: {
-    paddingLeft: '0px',
-    width: '60%',
-  },
-  switch: {
-    paddingLeft: '0px',
-    marginTop: '20px',
-  },
-  subTextFieldMonth: {
-    paddingTop: '0.5rem',
-    width: '7rem',
-    margin: '0',
-    marginLeft: '1.2rem',
-    marginRight: '0.2rem',
-  },
-  subTextFieldDay: {
-    paddingTop: '0.5rem',
-    width: '3rem',
-    margin: '0 0.2rem',
-  },
-  subTextFieldYear: {
-    paddingTop: '0.5rem',
-    width: '6rem',
-    marginRight: '2rem',
-  },
-  inputs: {
-    marginTop: '.8rem',
-    height: '1.5rem',
-    padding: '2px',
-    paddingLeft: '10px',
-  },
-  inputsDescription: {
-    marginTop: '.8rem',
-    height: '1.5rem',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   label: {
-    marginTop: '2rem',
-    marginRight: '0.8rem',
     textAlign: 'right',
     fontSize: 11,
-    width: '30%',
-    height: '2rem',
-    color: 'rgb(0,0,0)',
     fontWeight: 'bold',
+    width: '25%',
+    margin: '0 3% 0 0',
   },
-  selectLabel: {
-    marginTop: '2rem',
-    marginRight: '0.8rem',
-    textAlign: 'right',
-    fontSize: 11,
-    width: '10%',
-    height: '2rem',
-    color: 'rgb(0,0,0)',
-    fontWeight: 'bold',
-  },
-  box: {
-    display: 'flex',
+  textField: {
+    alignContent: 'center',
+    padding: '0',
+    width: '50%',
+    margin: '2% 0 2% 0',
   },
   phoneButton: {
     width: 140,
@@ -83,15 +47,13 @@ const useStyles = makeStyles((theme: any) => ({
     marginTop: 20,
   },
   submit: {
-    margin: theme.spacing(3, 2, 2),
     padding: 10,
     width: 160,
     height: 46,
     borderRadius: theme.shape.borderRadius,
-    marginTop: 49,
+    background: '#ff0000',
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: '4rem',
   },
 }));
 

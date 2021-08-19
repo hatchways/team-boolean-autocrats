@@ -1,3 +1,8 @@
+export enum ProfileType {
+  Sitter = 'Sitter',
+  Owner = 'Owner',
+}
+
 export interface Profile {
   userId?: string;
   firstName: string;
@@ -8,7 +13,7 @@ export interface Profile {
   phoneNumber?: string;
   address: string;
   description: string;
-  type?: string;
+  type?: ProfileType;
   isAvailable?: boolean;
   availableHoursPerWeek?: string;
   availabilityPerWeek?: {

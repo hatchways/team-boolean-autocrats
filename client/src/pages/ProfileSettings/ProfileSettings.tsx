@@ -47,7 +47,7 @@ export default function ProfileSettings(): JSX.Element {
       <Grid item xs={2}>
         <Options />
       </Grid>
-      <Grid item xs={10} className={classes.root}>
+      <Grid item xs={8} className={classes.root}>
         <Paper elevation={3} className={classes.gridContainer}>
           {handleRoute(location.pathname)}
         </Paper>
