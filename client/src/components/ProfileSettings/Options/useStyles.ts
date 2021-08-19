@@ -23,7 +23,8 @@ const useStyles = makeStyles(() => ({
     top: '9%',
   },
   listItem: {
-    marginLeft: '30%',
+    marginLeft: '40%',
+    color: '#131313',
   },
 }));
 
