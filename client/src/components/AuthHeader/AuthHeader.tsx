@@ -6,18 +6,17 @@ import useStyles from './useStyles';
 interface Props {
   linkTo: string;
   btnText: string;
+  variant: any;
 }
 
-const AuthHeader = ({ linkTo, btnText }: Props): JSX.Element => {
+const AuthHeader = ({ linkTo, btnText, variant }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
     <Box p={1} className={classes.authHeader}>
-      <Link to={linkTo} className={classes.link}>
-        <Button className={classes.accBtn} variant="outlined">
-          {btnText}
-        </Button>
-      </Link>
+      <Button className={classes.accBtn} component={Link} to={linkTo} color="secondary" variant={variant}>
+        {btnText}
+      </Button>
     </Box>
   );
 };

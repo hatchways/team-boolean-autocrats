@@ -9,11 +9,15 @@ export default function NavBar(): JSX.Element {
   return (
     <AppBar className={classes.appbar} position="static">
       <Toolbar className={classes.toolbar}>
-        <Link className={classes.link} href="#">
-          Become a Sitter.
-        </Link>
-        <AuthHeader linkTo="/login" btnText="Login" />
-        <AuthHeader linkTo="/signup" btnText="Sign Up" />
+        <img className={classes.logo} src="https://i.imgur.com/OQ7Xm7w.png" title="source: imgur.com" />
+        <nav className={classes.nav}>
+          {/* TODO: Replace hyper-link */}
+          <Link className={classes.link} href="#">
+            Become a Sitter.
+          </Link>
+          <AuthHeader linkTo="/login" btnText="Login" variant="outlined" />
+          <AuthHeader linkTo="/signup" btnText="Sign Up" variant="contained" />
+        </nav>
       </Toolbar>
     </AppBar>
   );
