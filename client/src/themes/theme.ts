@@ -15,11 +15,7 @@ export const theme = createMuiTheme({
   },
   palette: {
     primary: { main: '#3A8DFF' },
-<<<<<<< HEAD
     secondary: { main: '#ef3f40' },
-=======
-    secondary: { main: '#ff0000' },
->>>>>>> af9fb21 (feat: Create edit profile UI)
   },
   shape: {
     borderRadius: 5,
