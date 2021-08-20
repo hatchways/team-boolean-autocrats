@@ -8,6 +8,7 @@ import { Formik, FormikHelpers } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
 import { Profile, ProfileType } from './../../../../interface/Profile';
+import AvailableSwitch from './AvailableSwitch/AvailableSwitch';
 import useStyles from './useStyles';
 
 interface Props {
@@ -33,7 +34,7 @@ interface Props {
 const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
   const classes = useStyles();
 
-  const [isAvailable, setIsAvailable] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(true);
   const handleToggle = () => {
     isAvailable ? setIsAvailable(false) : setIsAvailable(true);
   };
@@ -135,9 +136,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             </Typography>
           </Grid>
           {values.type === ProfileType.Sitter && ( //TODO: Fix the button styling
-            <Grid className={classes.gridItemA}>
+            <Grid className={`${classes.gridItemA} ${classes.toggle}`}>
               <label className={classes.label}>{`I'M AVAILABLE`}</label>
-              <Switch id="I'M AVAILABLE" checked={isAvailable} onChange={handleToggle} name="I'M AVAILABLE" />
+              <AvailableSwitch id="I'M AVAILABLE" checked={isAvailable} onChange={handleToggle} name="I'M AVAILABLE" />
             </Grid>
           )}
           {values.type === ProfileType.Sitter && (
@@ -177,7 +178,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 shrink: true,
               }}
               name="firstName"
-              autoComplete="firstName"
               helperText={touched.firstName ? errors.firstName : ''}
               error={touched.firstName && Boolean(errors.firstName)}
               value={values.firstName}
@@ -197,7 +197,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 shrink: true,
               }}
               name="lastName"
-              autoComplete="lastName"
               helperText={touched.lastName ? errors.lastName : ''}
               error={touched.lastName && Boolean(errors.lastName)}
               value={values.lastName}
@@ -256,7 +255,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 shrink: true,
               }}
               name="email"
-              autoComplete="email"
               helperText={touched.email ? errors.email : ''}
               error={touched.email && Boolean(errors.email)}
               value={values.email}
@@ -269,17 +267,18 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             <label className={classes.label}>PHONE NUMBER</label>
             <TextField
               className={classes.textField}
+              id="phoneNumber"
               fullWidth
               margin="normal"
               InputLabelProps={{
                 shrink: true,
               }}
-              placeholder="home/mobile number"
               helperText={touched.phoneNumber ? errors.phoneNumber : ''}
-              value={values.phoneNumber}
               error={touched.phoneNumber && Boolean(errors.phoneNumber)}
+              value={values.phoneNumber}
               onChange={handleChange}
               variant="outlined"
+              placeholder="123-456-7890"
             />
           </Grid>
           {values.type === ProfileType.Sitter && (
@@ -293,12 +292,12 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                placeholder="Set an hourly rate with a maximum of $200/hour"
                 helperText={touched.hourlyRate ? errors.hourlyRate : ''}
                 value={values.hourlyRate}
                 error={touched.hourlyRate && Boolean(errors.hourlyRate)}
                 onChange={handleChange}
                 variant="outlined"
+                placeholder="Set an hourly rate with a maximum of $200/hour"
               />
             </Grid>
           )}
@@ -312,12 +311,12 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               InputLabelProps={{
                 shrink: true,
               }}
-              placeholder="Address"
               helperText={touched.address ? errors.address : ''}
               error={touched.address && Boolean(errors.address)}
               value={values.address}
               onChange={handleChange}
               variant="outlined"
+              placeholder="Address"
             />
           </Grid>
           <Grid className={classes.gridItemA}>
@@ -331,32 +330,17 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 shrink: true,
               }}
               rows={8}
-              placeholder="About you"
               multiline={true}
               helperText={touched.description ? errors.description : ''}
               error={touched.description && Boolean(errors.description)}
               value={values.description}
               onChange={handleChange}
               variant="outlined"
+              placeholder="About you"
             />
           </Grid>
           <Grid className={classes.gridItemB} alignItems="center">
-            <Button
-              style={{
-                borderRadius: 5,
-                backgroundColor: '#ff0000',
-                color: 'white',
-                padding: 10,
-                width: 160,
-                height: 46,
-                fontSize: '11px',
-              }}
-              type="submit"
-              size="small"
-              variant="contained"
-              color="secondary"
-              className={classes.submit}
-            >
+            <Button type="submit" size="small" variant="contained" color="secondary" className={classes.submit}>
               SAVE
             </Button>
           </Grid>
