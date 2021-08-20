@@ -2,7 +2,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
 import useStyle from './useStyles';
-import AuthHeader from '../AuthHeader/AuthHeader';
+import AuthNavButton from '../AuthNavButton/AuthNavButton';
 
 export default function NavBar(): JSX.Element {
   const classes = useStyle();
@@ -15,8 +15,8 @@ export default function NavBar(): JSX.Element {
           <Link className={classes.link} href="#">
             Become a Sitter.
           </Link>
-          <AuthHeader linkTo="/login" btnText="Login" variant="outlined" />
-          <AuthHeader linkTo="/signup" btnText="Sign Up" variant="contained" />
+          <AuthNavButton linkTo="/login" btnText="Login" variant="outlined" />
+          <AuthNavButton linkTo="/signup" btnText="Sign Up" variant="contained" />
         </nav>
       </Toolbar>
     </AppBar>
