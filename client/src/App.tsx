@@ -8,8 +8,8 @@ import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
 import ProtectedRoute from './components/ProtectedRoute';
-
 import './App.css';
+import ProfileSettings from './pages/ProfileSettings/ProfileSettings';
 
 function App(): JSX.Element {
   return (
@@ -22,6 +22,11 @@ function App(): JSX.Element {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+                <Route path="/profile/options" component={ProfileSettings} />
+                <Route exact path="/dashboard">
+                  <Dashboard />
+                </Route>
+
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>

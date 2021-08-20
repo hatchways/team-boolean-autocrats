@@ -26,11 +26,18 @@ export default function Dashboard(): JSX.Element {
     // loading for a split seconds until history.push works
     return <CircularProgress />;
   }
+  // TODO
+  // This temporary button is a placeholder and will be removed eventually.
+  // It's purpose is for now is to render the page for the user profile.
+  const handleTemporaryButton = () => {
+    history.push('/profile/options');
+  };
 
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
       <Grid item className={classes.drawerWrapper}>
+        {<button onClick={handleTemporaryButton}>Options</button>}
         <ChatSideBanner loggedInUser={loggedInUser} />
       </Grid>
     </Grid>
