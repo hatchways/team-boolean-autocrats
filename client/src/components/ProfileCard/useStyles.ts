@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  deleteBtn: {
-    color: '#bbbcbb',
-  },
   paper: {
     margin: 'auto',
     marginTop: theme.spacing(8),

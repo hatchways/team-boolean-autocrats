@@ -8,7 +8,7 @@ export default function ProfileCard(): JSX.Element {
 
   return (
     <Paper className={classes.paper} elevation={4}>
-      <Box className={classes.box}>
+      <Box display="flex" alignItems="center" flexDirection="column">
         <Typography align="center" className={classes.title} variant="h4">
           Profile Photo
         </Typography>
@@ -16,12 +16,10 @@ export default function ProfileCard(): JSX.Element {
         <Typography className={classes.secondaryText} color="textSecondary">
           Be sure to use a photo that clearly shows your face
         </Typography>
-        <Button className={classes.uploadBtn} variant="outlined">
+        <Button className={classes.uploadBtn} variant="outlined" color="secondary">
           Upload a file from your device
         </Button>
-        <Button className={classes.deleteBtn} startIcon={<DeleteForeverIcon />}>
-          Delete Photo
-        </Button>
+        <Button startIcon={<DeleteForeverIcon />}>Delete Photo</Button>
       </Box>
     </Paper>
   );
