@@ -1,9 +1,13 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   form: {
     width: '100%',
     height: '100%',
+    alignItems: 'center',
+  },
+  toggle: {
+    marginBottom: '1%',
   },
   gridItemA: {
     display: 'flex',
