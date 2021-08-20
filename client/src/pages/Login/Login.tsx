@@ -10,6 +10,7 @@ import LoginForm from './LoginForm/LoginForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
+import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
 export default function Login(): JSX.Element {
   const classes = useStyles();
@@ -38,6 +39,7 @@ export default function Login(): JSX.Element {
 
   return (
     <Grid container component="main" className={classes.root}>
+      <ProfileCard />
       <CssBaseline />
       <Grid className={classes.paper} item component={Paper} square>
         <Box className={classes.authWrapper}>
