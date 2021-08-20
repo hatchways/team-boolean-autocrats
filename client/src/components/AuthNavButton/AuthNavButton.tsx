@@ -9,7 +9,7 @@ interface Props {
   variant: any;
 }
 
-const AuthHeader = ({ linkTo, btnText, variant }: Props): JSX.Element => {
+const AuthNavButton = ({ linkTo, btnText, variant }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -21,4 +21,4 @@ const AuthHeader = ({ linkTo, btnText, variant }: Props): JSX.Element => {
   );
 };
 
-export default AuthHeader;
+export default AuthNavButton;
