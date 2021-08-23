@@ -42,12 +42,12 @@ export default function ProfileSettings(): JSX.Element {
   };
 
   return (
-    <Grid container>
+    <Grid container className={classes.root}>
       <CssBaseline />
       <Grid item xs={2}>
         <Options />
       </Grid>
-      <Grid item xs={8} className={classes.root}>
+      <Grid item xs={8} className={classes.paper}>
         <Paper elevation={3} className={classes.gridContainer}>
           {handleRoute(location.pathname)}
         </Paper>
