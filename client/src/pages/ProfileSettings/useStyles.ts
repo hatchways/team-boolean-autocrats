@@ -3,9 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#FAFAFA',
+  },
+  paper: {
+    backgroundColor: '#FAFAFA',
     margin: '0 0 0 1.5%',
   },
-  gridContainer: {
+  paperContainer: {
     margin: '5% 15% 5% 11%',
     padding: '3% 7% 3% 7%',
     justifyContent: 'center',

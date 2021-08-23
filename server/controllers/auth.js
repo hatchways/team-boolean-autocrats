@@ -91,6 +91,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
 // @access Private
 exports.loadUser = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id);
+  const profile = await Profile.findOne({ userId: user._id });
 
   if (!user) {
     res.status(401);

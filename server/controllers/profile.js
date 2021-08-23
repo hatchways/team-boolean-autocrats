@@ -21,18 +21,17 @@ exports.updateProfile = asyncHandler(async (req, res) => {
   const profile = req.body;
   const options = { new: true };
   try {
-    const updatedProfile = await Profile.findByIdAndUpdate(id, profile, options);
-    res.status(200).json({ status: 200, profile: updatedProfile, message: 'Profile updated!' });
+    const updatedProfile = await Profile.findOneAndUpdate(id, profile, options);
+    res.status(200).json({ status: 200, profile: updatedProfile, message: 'Your profile has been updated' });
   } catch (error) {
-    res.status(500);
-    throw new Error('Error updating the profile.');
+    res.status(500).json({ status: 500, message: 'Error updating the profile' });
   }
 });
 
 // GET /profile:id - Search profile with the given id
 exports.searchProfile = asyncHandler(async (req, res) => {
   try {
-    const profile = await Profile.findById(req.params.id);
+    const profile = await Profile.findOne({ userId: req.params.id });
     if (profile) {
       res.status(200).json({ status: 200, profile: profile, message: 'Profile found!' });
     } else {

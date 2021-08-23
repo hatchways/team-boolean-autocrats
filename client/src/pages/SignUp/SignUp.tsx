@@ -1,20 +1,22 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import { FormikHelpers } from 'formik';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import useStyles from './useStyles';
-import register from '../../helpers/APICalls/register';
-import SignUpForm from './SignUpForm/SignUpForm';
+import { FormikHelpers } from 'formik';
+import { useHistory } from 'react-router-dom';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
+import register from '../../helpers/APICalls/register';
+import SignUpForm from './SignUpForm/SignUpForm';
+import useStyles from './useStyles';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
   const { updateLoginContext } = useAuth();
   const { updateSnackBarMessage } = useSnackBar();
+  const history = useHistory();
 
   const handleSubmit = (
     { username, email, password }: { email: string; password: string; username: string },
@@ -27,6 +29,7 @@ export default function Register(): JSX.Element {
         updateSnackBarMessage(data.error.message);
       } else if (data.success) {
         updateLoginContext(data.success);
+        history.push('/profile');
       } else {
         // should not get here from backend but this catch is for an unknown issue
         console.error({ data });

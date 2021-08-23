@@ -1,9 +1,8 @@
-import { string } from 'yup/lib/locale';
-import { Profile } from '../interface/Profile';
+import { Profile, ProfileType } from '../interface/Profile';
 
 const mockUserProfile: Profile = {
   userId: 'mockUserId',
-  type: 'mocktype',
+  type: ProfileType.Owner,
   firstName: 'mockFirstName',
   lastName: 'mockLastName',
   gender: 'mockGender',
@@ -28,7 +27,7 @@ const mockUserProfile: Profile = {
 
 const mockOtherUserProfile1: Profile = {
   userId: 'mockUserId1',
-  type: 'mocktype1',
+  type: ProfileType.Owner,
   firstName: 'mockFirstName1',
   lastName: 'mockLastName1',
   gender: 'mockGender1',
@@ -52,7 +51,7 @@ const mockOtherUserProfile1: Profile = {
 };
 const mockOtherUserProfile2: Profile = {
   userId: 'mockUserId2',
-  type: 'mocktype2',
+  type: ProfileType.Sitter,
   firstName: 'mockFirstName2',
   lastName: 'mockLastName2',
   gender: 'mockGender2',
@@ -76,7 +75,7 @@ const mockOtherUserProfile2: Profile = {
 };
 const mockOtherUserProfile3: Profile = {
   userId: 'mockUserId3',
-  type: 'mocktype3',
+  type: ProfileType.Sitter,
   firstName: 'mockFirstName3',
   lastName: 'mockLastName3',
   gender: 'mockGender3',

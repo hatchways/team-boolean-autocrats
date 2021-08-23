@@ -7,15 +7,9 @@ import { Link } from 'react-router-dom';
 import { ProfileType } from '../../../interface/Profile';
 import useStyles from './useStyles';
 
-const Options = (): JSX.Element => {
+const Options = (props: { type: ProfileType }): JSX.Element => {
   const classes = useStyles();
   const [selectedIndex, setSelectedIndex] = useState(0);
-
-  // TEST START
-  // This will be removed once integration is applied
-  // This is only here to test if availability will render when a user is a type === 'Sitter'
-  const testType = 'Sitter';
-  // TEST END
 
   const handleListItemClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
     setSelectedIndex(index);
@@ -50,7 +44,7 @@ const Options = (): JSX.Element => {
         >
           <ListItemText primary="Profile Photo" className={classes.listItem} />
         </ListItem>
-        {testType === ProfileType.Sitter && ( // TODO: This condition will be modified accordingly once integration is applied
+        {props.type === ProfileType.Sitter && (
           <ListItem
             button
             disableGutters
