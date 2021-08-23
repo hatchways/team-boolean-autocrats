@@ -26,7 +26,6 @@ function App(): JSX.Element {
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>
-
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>

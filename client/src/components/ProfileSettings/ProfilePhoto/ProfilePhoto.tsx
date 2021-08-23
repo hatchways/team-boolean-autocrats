@@ -1,7 +1,7 @@
-import { Typography } from '@material-ui/core';
+import ProfileCard from '../../ProfileCard/ProfileCard';
 
 export default function ProfilePhoto(): JSX.Element {
-  return <Typography>Profile Photo</Typography>;
+  return <ProfileCard />;
 }
 
 // TODO
