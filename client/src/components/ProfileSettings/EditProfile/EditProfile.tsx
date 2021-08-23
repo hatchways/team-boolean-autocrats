@@ -1,5 +1,4 @@
 import Box from '@material-ui/core/Box';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import { FormikHelpers } from 'formik';
 import { Profile } from './../../../interface/Profile';
@@ -29,8 +28,7 @@ export default function EditProfile(): JSX.Element {
   };
   return (
     <Grid container>
-      <CssBaseline />
-      <Box className={classes.box}>
+      <Box height="100%" width="100%" bgcolor="text.secondary" className={classes.box}>
         <EditProfileForm handleSubmit={handleSubmit} />
       </Box>
     </Grid>

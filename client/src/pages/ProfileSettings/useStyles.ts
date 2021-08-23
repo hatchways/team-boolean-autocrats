@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#FAFAFA',
+  },
+  paper: {
+    backgroundColor: '#FAFAFA',
     margin: '0 0 0 1.5%',
   },
   gridContainer: {

@@ -1,5 +1,5 @@
 import DateFnsUtils from '@date-io/date-fns';
-import { Grid, Switch, Typography } from '@material-ui/core';
+import { Switch, Typography, Box } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -31,6 +31,46 @@ interface Props {
   ) => void;
 }
 
+const availableHours = [
+  {
+    value: 'More than 10 hrs/week',
+    label: 'More than 10 hrs/week',
+  },
+  {
+    value: 'More than 20 hrs/week',
+    label: 'More than 20 hrs/week',
+  },
+  {
+    value: 'More than 30 hrs/week',
+    label: 'More than 30 hrs/week',
+  },
+  {
+    value: 'More than 40 hrs/week',
+    label: 'More than 40 hrs/week',
+  },
+  {
+    value: 'More than 50 hrs/week',
+    label: 'More than 50 hrs/week',
+  },
+];
+
+const genderSelection = [
+  {
+    value: 'Male',
+    label: 'Male',
+  },
+  {
+    value: 'Female',
+    label: 'Female',
+  },
+  {
+    value: 'Other',
+    label: 'Other',
+  },
+];
+
+const phoneNumberRegExp = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+
 const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
   const classes = useStyles();
 
@@ -39,50 +79,10 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
     isAvailable ? setIsAvailable(false) : setIsAvailable(true);
   };
 
-  const availableHours = [
-    {
-      value: 'More than 10 hrs/week',
-      label: 'More than 10 hrs/week',
-    },
-    {
-      value: 'More than 20 hrs/week',
-      label: 'More than 20 hrs/week',
-    },
-    {
-      value: 'More than 30 hrs/week',
-      label: 'More than 30 hrs/week',
-    },
-    {
-      value: 'More than 40 hrs/week',
-      label: 'More than 40 hrs/week',
-    },
-    {
-      value: 'More than 50 hrs/week',
-      label: 'More than 50 hrs/week',
-    },
-  ];
-
-  const genderSelection = [
-    {
-      value: 'Male',
-      label: 'Male',
-    },
-    {
-      value: 'Female',
-      label: 'Female',
-    },
-    {
-      value: 'Other',
-      label: 'Other',
-    },
-  ];
-
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const handleBirthday = (date: any) => {
     setDateOfBirth(date);
   };
-
-  const phoneNumberRegExp = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
 
   return (
     <Formik
@@ -130,20 +130,34 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
     >
       {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
-          <Grid className={classes.gridItemB}>
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="center"
+            fontWeight="bold"
+            margin="5% 0 2% 0"
+          >
             <Typography>
               <h1 className={classes.heading}>Edit Profile</h1>
             </Typography>
-          </Grid>
+          </Box>
           {values.type === ProfileType.Sitter && ( //TODO: Fix the button styling
-            <Grid className={`${classes.gridItemA} ${classes.toggle}`}>
+            <Box
+              display="flex"
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="flex-start"
+              fontWeight="bold"
+              marginBottom="1%"
+            >
               <label className={classes.label}>{`I'M AVAILABLE`}</label>
               <AvailableSwitch id="I'M AVAILABLE" checked={isAvailable} onChange={handleToggle} name="I'M AVAILABLE" />
-            </Grid>
+            </Box>
           )}
           {values.type === ProfileType.Sitter && (
-            <Grid className={classes.gridItemA}>
-              <label className={classes.label}>AVAILABILITY</label>
+            <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+              <label className={classes.label}>Availability</label>
               <TextField
                 className={`${classes.textField}`}
                 id="availableHoursPerWeek"
@@ -165,10 +179,10 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                   </MenuItem>
                 ))}
               </TextField>
-            </Grid>
+            </Box>
           )}
-          <Grid className={classes.gridItemA}>
-            <label className={classes.label}>FIRST NAME</label>
+          <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+            <label className={classes.label}>First Name</label>
             <TextField
               className={classes.textField}
               id="firstName"
@@ -185,9 +199,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               variant="outlined"
               placeholder="John"
             />
-          </Grid>
-          <Grid className={classes.gridItemA}>
-            <label className={classes.label}>LAST NAME</label>
+          </Box>
+          <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+            <label className={classes.label}>Last Name</label>
             <TextField
               className={classes.textField}
               id="lastName"
@@ -204,9 +218,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               variant="outlined"
               placeholder="Doe"
             />
-          </Grid>
-          <Grid className={classes.gridItemA}>
-            <label className={classes.label}>GENDER</label>
+          </Box>
+          <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+            <label className={classes.label}>Gender</label>
             <TextField
               className={`${classes.textField}`}
               id="gender"
@@ -228,9 +242,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 </MenuItem>
               ))}
             </TextField>
-          </Grid>
-          <Grid className={classes.gridItemA}>
-            <label className={classes.label}>BIRTH DAY</label>
+          </Box>
+          <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+            <label className={classes.label}>Birth Day</label>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 id="dateofBirth"
@@ -243,9 +257,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 }}
               />
             </MuiPickersUtilsProvider>
-          </Grid>
-          <Grid className={classes.gridItemA}>
-            <label className={classes.label}>EMAIL ADDRESS</label>
+          </Box>
+          <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+            <label className={classes.label}>Email Address</label>
             <TextField
               className={classes.textField}
               id="email"
@@ -262,9 +276,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               variant="outlined"
               placeholder="john-doe@gmail.com"
             />
-          </Grid>
-          <Grid className={classes.gridItemA}>
-            <label className={classes.label}>PHONE NUMBER</label>
+          </Box>
+          <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+            <label className={classes.label}>Phone Number</label>
             <TextField
               className={classes.textField}
               id="phoneNumber"
@@ -280,10 +294,10 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               variant="outlined"
               placeholder="123-456-7890"
             />
-          </Grid>
+          </Box>
           {values.type === ProfileType.Sitter && (
-            <Grid className={classes.gridItemA}>
-              <label className={classes.label}>HOURLY RATE</label>
+            <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+              <label className={classes.label}>Hourly Rate</label>
               <TextField
                 className={classes.textField}
                 id="hourlyRate"
@@ -299,10 +313,10 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 variant="outlined"
                 placeholder="Set an hourly rate with a maximum of $200/hour"
               />
-            </Grid>
+            </Box>
           )}
-          <Grid className={classes.gridItemA}>
-            <label className={classes.label}>WHERE YOU LIVE</label>
+          <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+            <label className={classes.label}>Where You Live</label>
             <TextField
               className={classes.textField}
               id="address"
@@ -318,9 +332,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               variant="outlined"
               placeholder="Address"
             />
-          </Grid>
-          <Grid className={classes.gridItemA}>
-            <label className={classes.label}>DESCRIBE YOURSELF</label>
+          </Box>
+          <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
+            <label className={classes.label}>Describe Yourself</label>
             <TextField
               className={classes.textField}
               id="description"
@@ -338,12 +352,19 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               variant="outlined"
               placeholder="About you"
             />
-          </Grid>
-          <Grid className={classes.gridItemB} alignItems="center">
+          </Box>
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="center"
+            fontWeight="bold"
+            margin="5% 0 2% 0"
+          >
             <Button type="submit" size="small" variant="contained" color="secondary" className={classes.submit}>
               SAVE
             </Button>
-          </Grid>
+          </Box>
         </form>
       )}
     </Formik>

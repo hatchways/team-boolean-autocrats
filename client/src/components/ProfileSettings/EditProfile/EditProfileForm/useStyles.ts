@@ -6,25 +6,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '100%',
     alignItems: 'center',
   },
-  toggle: {
-    marginBottom: '1%',
-  },
-  gridItemA: {
-    display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'flex-start',
-    alignContent: 'center',
-    alignItems: 'center',
-    fontWeight: 'bold',
-  },
-  gridItemB: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '5% 0 2% 0',
-    fontWeight: 'bold',
-  },
   heading: {
     margin: '0 auto',
     marginBottom: '2rem',
@@ -38,17 +19,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 'bold',
     width: '25%',
     margin: '0 3% 0 0',
+    textTransform: 'uppercase',
   },
   textField: {
     alignContent: 'center',
     padding: '0',
     width: '50%',
     margin: '2% 0 2% 0',
-  },
-  phoneButton: {
-    width: 140,
-    height: 30,
-    marginTop: 20,
   },
   submit: {
     padding: 10,
