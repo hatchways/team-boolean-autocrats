@@ -26,7 +26,7 @@ export default function EditProfile(): JSX.Element {
   };
   return (
     <Grid container>
-      <Box height="100%" width="100%" bgcolor="text.secondary">
+      <Box height="100%" width="100%" bgcolor="white">
         <EditProfileForm handleSubmit={handleSubmit} />
       </Box>
     </Grid>

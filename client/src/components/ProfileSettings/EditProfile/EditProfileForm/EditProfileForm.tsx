@@ -1,15 +1,14 @@
 import DateFnsUtils from '@date-io/date-fns';
-import { Switch, Typography, Box } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { Formik, FormikHelpers } from 'formik';
-import { useState } from 'react';
 import * as Yup from 'yup';
-import { Profile, ProfileType } from './../../../../interface/Profile';
-import { initialValues, validationShape, availableHours, genderSelection } from './EditProfileForm.constants';
+import { AvailableType, Profile, ProfileType } from './../../../../interface/Profile';
 import AvailableSwitch from './AvailableSwitch/AvailableSwitch';
+import { availableHours, genderSelection, initialValues, validationShape } from './EditProfileForm.constants';
 import useStyles from './useStyles';
 
 interface Props {
@@ -35,23 +34,14 @@ interface Props {
 const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
   const classes = useStyles();
 
-  const [isAvailable, setIsAvailable] = useState(true);
-  const handleToggle = () => {
-    isAvailable ? setIsAvailable(false) : setIsAvailable(true);
-  };
-
-  const [dateOfBirth, setDateOfBirth] = useState(new Date());
-  const handleBirthday = (date: any) => {
-    setDateOfBirth(date);
-  };
-
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={Yup.object().shape(validationShape)}
+      validateOnChange={true}
       onSubmit={handleSubmit}
     >
-      {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
+      {({ handleSubmit, handleChange, values, touched, errors, isSubmitting, setFieldValue }) => (
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <Box
             display="flex"
@@ -61,8 +51,8 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             fontWeight="bold"
             margin="5% 0 2% 0"
           >
-            <Typography>
-              <h1 className={classes.heading}>Edit Profile</h1>
+            <Typography className={classes.heading} variant="h4">
+              Edit Profile
             </Typography>
           </Box>
           {values.type === ProfileType.Sitter && ( //TODO: Fix the button styling
@@ -74,13 +64,21 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               fontWeight="bold"
               marginBottom="1%"
             >
-              <label className={classes.label}>{`I'M AVAILABLE`}</label>
-              <AvailableSwitch id="I'M AVAILABLE" checked={isAvailable} onChange={handleToggle} name="I'M AVAILABLE" />
+              <Typography className={classes.formItem} variant="subtitle2">{`I'm Available`}</Typography>
+              <AvailableSwitch
+                id="isAvailable"
+                name="isAvailable"
+                value={AvailableType.No}
+                checked={values.isAvailable === AvailableType.No}
+                onChange={(e, checked) => setFieldValue('isAvailable', checked ? AvailableType.No : AvailableType.Yes)}
+              />
             </Box>
           )}
           {values.type === ProfileType.Sitter && (
             <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-              <label className={classes.label}>Availability</label>
+              <Typography className={classes.formItem} variant="subtitle2">
+                Availability
+              </Typography>
               <TextField
                 className={`${classes.textField}`}
                 id="availableHoursPerWeek"
@@ -90,7 +88,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                   shrink: true,
                 }}
                 name="availableHoursPerWeek"
-                helperText={touched.availableHoursPerWeek ? errors.availableHoursPerWeek : ''}
+                helperText={
+                  touched.availableHoursPerWeek && errors.availableHoursPerWeek ? errors.availableHoursPerWeek : ''
+                }
                 error={touched.availableHoursPerWeek && Boolean(errors.availableHoursPerWeek)}
                 value={values.availableHoursPerWeek}
                 onChange={handleChange}
@@ -105,7 +105,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             </Box>
           )}
           <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-            <label className={classes.label}>First Name</label>
+            <Typography className={classes.formItem} variant="subtitle2">
+              First Name
+            </Typography>
             <TextField
               className={classes.textField}
               id="firstName"
@@ -115,7 +117,7 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 shrink: true,
               }}
               name="firstName"
-              helperText={touched.firstName ? errors.firstName : ''}
+              helperText={touched.firstName && errors.firstName ? errors.firstName : ''}
               error={touched.firstName && Boolean(errors.firstName)}
               value={values.firstName}
               onChange={handleChange}
@@ -124,7 +126,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             />
           </Box>
           <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-            <label className={classes.label}>Last Name</label>
+            <Typography className={classes.formItem} variant="subtitle2">
+              Last Name
+            </Typography>
             <TextField
               className={classes.textField}
               id="lastName"
@@ -134,7 +138,7 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 shrink: true,
               }}
               name="lastName"
-              helperText={touched.lastName ? errors.lastName : ''}
+              helperText={touched.lastName && errors.lastName ? errors.lastName : ''}
               error={touched.lastName && Boolean(errors.lastName)}
               value={values.lastName}
               onChange={handleChange}
@@ -143,7 +147,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             />
           </Box>
           <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-            <label className={classes.label}>Gender</label>
+            <Typography className={classes.formItem} variant="subtitle2">
+              Gender
+            </Typography>
             <TextField
               className={`${classes.textField}`}
               id="gender"
@@ -153,7 +159,7 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 shrink: true,
               }}
               name="gender"
-              helperText={touched.gender ? errors.gender : ''}
+              helperText={touched.gender && errors.gender ? errors.gender : ''}
               error={touched.gender && Boolean(errors.gender)}
               value={values.gender}
               onChange={handleChange}
@@ -167,14 +173,17 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             </TextField>
           </Box>
           <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-            <label className={classes.label}>Birth Day</label>
+            <Typography className={classes.formItem} variant="subtitle2">
+              Birth Day
+            </Typography>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 id="dateofBirth"
+                name="dateOfBirth"
                 inputVariant="outlined"
                 format="MMMM/dd/yyyy"
-                value={dateOfBirth}
-                onChange={handleBirthday}
+                value={values.dateOfBirth}
+                onChange={(date) => setFieldValue('dateOfBirth', date)}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}
@@ -182,7 +191,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             </MuiPickersUtilsProvider>
           </Box>
           <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-            <label className={classes.label}>Email Address</label>
+            <Typography className={classes.formItem} variant="subtitle2">
+              Email Address
+            </Typography>
             <TextField
               className={classes.textField}
               id="email"
@@ -192,7 +203,7 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 shrink: true,
               }}
               name="email"
-              helperText={touched.email ? errors.email : ''}
+              helperText={touched.email && errors.email ? errors.email : ''}
               error={touched.email && Boolean(errors.email)}
               value={values.email}
               onChange={handleChange}
@@ -201,7 +212,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             />
           </Box>
           <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-            <label className={classes.label}>Phone Number</label>
+            <Typography className={classes.formItem} variant="subtitle2">
+              Phone Number
+            </Typography>
             <TextField
               className={classes.textField}
               id="phoneNumber"
@@ -210,7 +223,7 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               InputLabelProps={{
                 shrink: true,
               }}
-              helperText={touched.phoneNumber ? errors.phoneNumber : ''}
+              helperText={touched.phoneNumber && errors.phoneNumber ? errors.phoneNumber : ''}
               error={touched.phoneNumber && Boolean(errors.phoneNumber)}
               value={values.phoneNumber}
               onChange={handleChange}
@@ -220,7 +233,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
           </Box>
           {values.type === ProfileType.Sitter && (
             <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-              <label className={classes.label}>Hourly Rate</label>
+              <Typography className={classes.formItem} variant="subtitle2">
+                Hourly Rate
+              </Typography>
               <TextField
                 className={classes.textField}
                 id="hourlyRate"
@@ -229,7 +244,7 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                helperText={touched.hourlyRate ? errors.hourlyRate : ''}
+                helperText={touched.hourlyRate && errors.hourlyRate ? errors.hourlyRate : ''}
                 value={values.hourlyRate}
                 error={touched.hourlyRate && Boolean(errors.hourlyRate)}
                 onChange={handleChange}
@@ -239,7 +254,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             </Box>
           )}
           <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-            <label className={classes.label}>Where You Live</label>
+            <Typography className={classes.formItem} variant="subtitle2">
+              Where You Live
+            </Typography>
             <TextField
               className={classes.textField}
               id="address"
@@ -248,7 +265,7 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               InputLabelProps={{
                 shrink: true,
               }}
-              helperText={touched.address ? errors.address : ''}
+              helperText={touched.address && errors.address ? errors.address : ''}
               error={touched.address && Boolean(errors.address)}
               value={values.address}
               onChange={handleChange}
@@ -257,7 +274,9 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
             />
           </Box>
           <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" fontWeight="bold">
-            <label className={classes.label}>Describe Yourself</label>
+            <Typography className={classes.formItem} variant="subtitle2">
+              Describe Yourself
+            </Typography>
             <TextField
               className={classes.textField}
               id="description"
@@ -268,7 +287,7 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               }}
               rows={8}
               multiline={true}
-              helperText={touched.description ? errors.description : ''}
+              helperText={touched.description && errors.description ? errors.description : ''}
               error={touched.description && Boolean(errors.description)}
               value={values.description}
               onChange={handleChange}

@@ -50,8 +50,10 @@ const profileSchema = new mongoose.Schema({
     default: 'Owner',
   },
   isAvailable: {
-    type: Boolean,
+    type: String,
     required: true,
+    enum: ['Yes', 'No'],
+    default: 'No',
   },
   availableHoursPerWeek: {
     type: String,

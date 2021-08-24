@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { ProfileType } from '../../../../interface/Profile';
+import { AvailableType, ProfileType } from '../../../../interface/Profile';
 
 export const availableHours = [
   {
@@ -50,7 +50,7 @@ export const initialValues = {
   phoneNumber: '',
   address: '',
   description: '',
-  isAvailable: true,
+  isAvailable: AvailableType.No,
   availableHoursPerWeek: '',
   hourlyRate: 1,
 };
@@ -70,7 +70,7 @@ export const validationShape = {
     .max(200, 'Description must be 200 for less characters')
     .min(1, 'Please describe yourself')
     .required('Required'),
-  isAvailable: Yup.boolean().required('Required'),
+  isAvailable: Yup.string().required('Required'),
   availableHoursPerWeek: Yup.string().required('Required'),
   hourlyRate: Yup.number()
     .test('This is a valid rate', 'This is not a valid rate', (value) =>

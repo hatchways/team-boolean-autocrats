@@ -3,6 +3,10 @@ export enum ProfileType {
   Owner = 'Owner',
 }
 
+export enum AvailableType {
+  Yes = 'Yes',
+  No = 'No',
+}
 export interface Profile {
   userId?: string;
   firstName: string;
@@ -14,7 +18,7 @@ export interface Profile {
   address: string;
   description: string;
   type?: ProfileType;
-  isAvailable?: boolean;
+  isAvailable?: string;
   availableHoursPerWeek?: string;
   availabilityPerWeek?: {
     monday: boolean;

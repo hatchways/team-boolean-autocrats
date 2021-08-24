@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+    fontWeight: 'bold',
   },
-  label: {
+  formItem: {
     textAlign: 'right',
-    fontSize: 11,
     fontWeight: 'bold',
     width: '25%',
     margin: '0 3% 0 0',
