@@ -8,6 +8,7 @@ import { Formik, FormikHelpers } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
 import { Profile, ProfileType } from './../../../../interface/Profile';
+import { initialValues, validationShape, availableHours, genderSelection } from './EditProfileForm.constants';
 import AvailableSwitch from './AvailableSwitch/AvailableSwitch';
 import useStyles from './useStyles';
 
@@ -31,46 +32,6 @@ interface Props {
   ) => void;
 }
 
-const availableHours = [
-  {
-    value: 'More than 10 hrs/week',
-    label: 'More than 10 hrs/week',
-  },
-  {
-    value: 'More than 20 hrs/week',
-    label: 'More than 20 hrs/week',
-  },
-  {
-    value: 'More than 30 hrs/week',
-    label: 'More than 30 hrs/week',
-  },
-  {
-    value: 'More than 40 hrs/week',
-    label: 'More than 40 hrs/week',
-  },
-  {
-    value: 'More than 50 hrs/week',
-    label: 'More than 50 hrs/week',
-  },
-];
-
-const genderSelection = [
-  {
-    value: 'Male',
-    label: 'Male',
-  },
-  {
-    value: 'Female',
-    label: 'Female',
-  },
-  {
-    value: 'Other',
-    label: 'Other',
-  },
-];
-
-const phoneNumberRegExp = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
-
 const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
   const classes = useStyles();
 
@@ -86,46 +47,8 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
 
   return (
     <Formik
-      initialValues={{
-        type: ProfileType.Sitter,
-        firstName: '',
-        lastName: '',
-        gender: '',
-        dateOfBirth: new Date(),
-        email: '',
-        phoneNumber: '',
-        address: '',
-        description: '',
-        isAvailable: true,
-        availableHoursPerWeek: '',
-        hourlyRate: 1,
-      }}
-      validationSchema={Yup.object().shape({
-        firstName: Yup.string().max(15, 'First name must be 15 or less characters').required('Required'),
-        lastName: Yup.string().max(20, 'Last name must be 20 characters or less').required('Required'),
-        gender: Yup.string().required('Required'),
-        dateofBirth: Yup.date().required('Required'),
-        email: Yup.string().required('Requried').email('Invalid email address'),
-        phoneNumber: Yup.string()
-          .required('Required')
-          .matches(phoneNumberRegExp, 'Phone number is not valid')
-          .max(14, 'You must enter a ten-digit phone number with the area code')
-          .min(10, 'You must enter a ten-digit phone number with the area code'),
-        address: Yup.string().required('Required'),
-        description: Yup.string()
-          .max(200, 'Description must be 200 for less characters')
-          .min(1, 'Please describe yourself')
-          .required('Required'),
-        isAvailable: Yup.boolean().required('Required'),
-        availableHoursPerWeek: Yup.string().required('Required'),
-        hourlyRate: Yup.number()
-          .test('This is a valid rate', 'This is not a valid rate', (value) =>
-            value !== undefined ? /^\d+(?:\.\d{1,2})?$/.test(value.toString()) : false,
-          )
-          .max(200, 'The maximum you can charge is $200/hour')
-          .min(1, 'The minimum you can charge is $1/hour')
-          .required('Required'),
-      })}
+      initialValues={initialValues}
+      validationSchema={Yup.object().shape(validationShape)}
       onSubmit={handleSubmit}
     >
       {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (

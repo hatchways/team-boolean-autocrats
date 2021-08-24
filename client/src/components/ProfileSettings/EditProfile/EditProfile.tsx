@@ -3,10 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import { FormikHelpers } from 'formik';
 import { Profile } from './../../../interface/Profile';
 import EditProfileForm from './EditProfileForm/EditProfileForm';
-import useStyles from './useStyles';
 
 export default function EditProfile(): JSX.Element {
-  const classes = useStyles();
   const handleSubmit = (
     {
       isAvailable,
@@ -28,7 +26,7 @@ export default function EditProfile(): JSX.Element {
   };
   return (
     <Grid container>
-      <Box height="100%" width="100%" bgcolor="text.secondary" className={classes.box}>
+      <Box height="100%" width="100%" bgcolor="text.secondary">
         <EditProfileForm handleSubmit={handleSubmit} />
       </Box>
     </Grid>
