@@ -84,9 +84,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 id="availableHoursPerWeek"
                 select
                 margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
                 name="availableHoursPerWeek"
                 helperText={
                   touched.availableHoursPerWeek && errors.availableHoursPerWeek ? errors.availableHoursPerWeek : ''
@@ -113,9 +110,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               id="firstName"
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
               name="firstName"
               helperText={touched.firstName && errors.firstName ? errors.firstName : ''}
               error={touched.firstName && Boolean(errors.firstName)}
@@ -134,9 +128,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               id="lastName"
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
               name="lastName"
               helperText={touched.lastName && errors.lastName ? errors.lastName : ''}
               error={touched.lastName && Boolean(errors.lastName)}
@@ -155,9 +146,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               id="gender"
               select
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
               name="gender"
               helperText={touched.gender && errors.gender ? errors.gender : ''}
               error={touched.gender && Boolean(errors.gender)}
@@ -199,9 +187,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               id="email"
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
               name="email"
               helperText={touched.email && errors.email ? errors.email : ''}
               error={touched.email && Boolean(errors.email)}
@@ -220,9 +205,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               id="phoneNumber"
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
               helperText={touched.phoneNumber && errors.phoneNumber ? errors.phoneNumber : ''}
               error={touched.phoneNumber && Boolean(errors.phoneNumber)}
               value={values.phoneNumber}
@@ -241,9 +223,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
                 id="hourlyRate"
                 fullWidth
                 margin="dense"
-                InputLabelProps={{
-                  shrink: true,
-                }}
                 helperText={touched.hourlyRate && errors.hourlyRate ? errors.hourlyRate : ''}
                 value={values.hourlyRate}
                 error={touched.hourlyRate && Boolean(errors.hourlyRate)}
@@ -262,9 +241,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               id="address"
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
               helperText={touched.address && errors.address ? errors.address : ''}
               error={touched.address && Boolean(errors.address)}
               value={values.address}
@@ -282,9 +258,6 @@ const EditProfileForm = ({ handleSubmit }: Props): JSX.Element => {
               id="description"
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
               rows={8}
               multiline={true}
               helperText={touched.description && errors.description ? errors.description : ''}
