@@ -15,12 +15,14 @@ const { uploadToS3, downloadFromS3 } = require('./S3');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile');
+const requestsRouter = require('./routes/requests');
 
 const { json, urlencoded } = express;
 
 connectDB();
 const app = express();
 const server = http.createServer(app);
+
 
 const io = socketio(server, {
   cors: {
@@ -48,6 +50,7 @@ app.use((req, res, next) => {
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/profile', profileRouter);
+app.use('/requests', requestsRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')));
